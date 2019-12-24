@@ -9,6 +9,9 @@
 <body>
     <h1>This is SpringMVC</h1>
 
+    <a href='test01/testRequestParam?name=hjc&age=11'>Test RequestParam</a><br>
+
+
     <form action='test01/testRest' method="POST">
         <input type='submit' value='testRest post'></input>
     </form><br>
@@ -16,7 +19,7 @@
     <form action='test01/testRest/1' method="POST">
         <input type='hidden' name='_method'/ value='delete'>
         <input type='submit' value='testRest dele'></input>
-    </form><br>
+    </form><br><br>
 
     <form action='test01/testRest/2' method="POST">
         <input type='hidden' name='_method'/ value='put'>

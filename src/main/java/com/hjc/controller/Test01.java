@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Classname Test01
@@ -15,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class Test01 {
 
+    @RequestMapping(value = "/testRequestParam")
+    public String testRequestParam(@RequestParam(value = "name") String n,
+                                   @RequestParam(value = "age",required = false, defaultValue = "0") Integer age){
+        System.out.println("param: name " + n + " age " + age);
+        return "hello";
+    }
 
     @RequestMapping(value = "/testRest/{id}", method = RequestMethod.DELETE)
     public String testRestDele(@PathVariable("id") Integer id){
