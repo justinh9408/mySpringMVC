@@ -9,6 +9,12 @@
 <body>
     <h1>This is SpringMVC</h1>
 
+
+    <a href='pojo/user'>go to user form</a><br>
+
+
+    <a href='test01/testCookieValue'>Test testCookieValue</a><br>
+
     <a href='test01/testRequestParam?name=hjc&age=11'>Test RequestParam</a><br>
 
 

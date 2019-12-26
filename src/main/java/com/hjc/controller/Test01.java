@@ -1,10 +1,7 @@
 package com.hjc.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Classname Test01
@@ -15,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/test01")
 @Controller
 public class Test01 {
+
+    @RequestMapping(value = "/testCookieValue")
+    public String testCookieValue(@CookieValue(value = "JSESSIONID", required = false) String cookieValue){
+        System.out.println("cookie value: " + cookieValue);
+        return "hello";
+    }
 
     @RequestMapping(value = "/testRequestParam")
     public String testRequestParam(@RequestParam(value = "name") String n,
