@@ -1,7 +1,12 @@
 package com.hjc.controller;
 
+import com.hjc.entity.Address;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 /**
  * @Classname Test01
@@ -9,9 +14,34 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2019-12-24 14:57
  * @Created by Justin
  */
+@SessionAttributes(value = "address",types = {Date.class})
 @RequestMapping("/test01")
 @Controller
 public class Test01 {
+
+    @ModelAttribute
+    public void setTime(Model model){
+        model.addAttribute("timeAtrr",new Date());
+    }
+
+
+    @RequestMapping(value = "/testSessionAttr")
+    public String  testSessionAttr(Model modelAndView){
+        Address address = new Address();
+        address.setCity("foshan");
+        address.setProvince("guangdong");
+        modelAndView.addAttribute("address",address);
+        return "hello";
+    }
+
+//    testModelAndView
+    @RequestMapping(value = "/testModelAndView")
+    public ModelAndView testModelAndView(){
+        ModelAndView modelAndView = new ModelAndView("hello");
+        modelAndView.addObject("time", new Date());
+
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/testCookieValue")
     public String testCookieValue(@CookieValue(value = "JSESSIONID", required = false) String cookieValue){

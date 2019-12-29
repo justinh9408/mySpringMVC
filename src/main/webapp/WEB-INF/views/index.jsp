@@ -1,14 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java"%>
+<%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>首页</title>
+<title>index</title>
 </head>
 <body>
     <h1>This is SpringMVC</h1>
 
+
+    <form method="POST" action="uploadFile" enctype="multipart/form-data">
+            File to upload: <input type="file" name="file">
+        <input type="submit" value="Upload"> Press here to upload the file!
+    </form>
+
+    <a href='test01/testSessionAttr'>test SessionAttr</a><br>
+
+    <a href='test01/testModelAndView'>test ModelAndView</a><br>
 
     <a href='pojo/user'>go to user form</a><br>
 
