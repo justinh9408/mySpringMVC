@@ -1,5 +1,6 @@
 package com.hjc.controller;
 
+import com.hjc.Exception.Not24Exception;
 import com.hjc.entity.Address;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,14 @@ public class Test01 {
         model.addAttribute("timeAtrr",new Date());
     }
 
+    @RequestMapping(value = "/testExcptionHandler")
+    public String testExcptionHandler(@RequestParam("i") Integer i){
+        if (i == 24)
+            throw new Not24Exception();
+        int result = 10 / i;
+        System.out.println(result);
+        return "hello";
+    }
 
     @RequestMapping(value = "/testSessionAttr")
     public String  testSessionAttr(Model modelAndView){

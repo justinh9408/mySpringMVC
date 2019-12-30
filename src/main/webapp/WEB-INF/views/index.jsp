@@ -11,6 +11,10 @@
     <h1>This is SpringMVC</h1>
 
 
+
+    <a href='test01/testExcptionHandler?i=2'>test Excption Handler</a><br>
+
+
     <form method="POST" action="uploadFile" enctype="multipart/form-data">
             File to upload: <input type="file" name="file">
         <input type="submit" value="Upload"> Press here to upload the file!
