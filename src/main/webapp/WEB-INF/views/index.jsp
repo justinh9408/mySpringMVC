@@ -10,6 +10,7 @@
 <body>
     <h1>This is SpringMVC</h1>
 
+    <a href='ssm/emp/3'>test SSM emp</a><br>
 
 
     <a href='test01/testExcptionHandler?i=2'>test Excption Handler</a><br>
