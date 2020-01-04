@@ -1,32 +1,26 @@
 package com.hjc.controller;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -65,4 +59,32 @@ public class Test01Test {
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         myBatisGenerator.generate(null);
     }
+
+    public SqlSessionFactory getSqlSessionFactory() throws IOException {
+        String resource = "mybatis-config.xml";
+        InputStream resourceAsStream = Resources.getResourceAsStream(resource);
+        InputStream inputStream = resourceAsStream;
+        SqlSessionFactory sqlSessionFactory =
+                new SqlSessionFactoryBuilder().build(inputStream);
+        return sqlSessionFactory;
+    }
+//
+//    @Test
+//    public void testExampleCriteria() throws IOException {
+//        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+//        SqlSession session = sqlSessionFactory.openSession();
+//        try {
+//            DepartmentMapper departmentMapper = session.getMapper(DepartmentMapper.class);
+//            DepartmentExample example = new DepartmentExample();
+//            DepartmentExample.Criteria criteria = example.createCriteria();
+//            criteria.andDeptNameIsNull();
+//            criteria.andDeptNameIn(Arrays.asList("df","d"));
+//            departmentMapper.selectByExample(example);
+//
+//        } finally {
+//            session.close();
+//        }
+//    }
+
+
 }

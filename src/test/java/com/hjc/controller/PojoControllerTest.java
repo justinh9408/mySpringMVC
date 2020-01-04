@@ -1,7 +1,13 @@
 package com.hjc.controller;
 
+import com.hjc.dao.DepartmentMapper;
+import com.hjc.entity.Department;
+import com.hjc.entity.DepartmentExample;
+import com.hjc.entity.Employee;
+import com.hjc.service.EmployeeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -10,6 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,8 +36,15 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PojoControllerTest {
 
+    @Autowired
+    EmployeeService service;
+
+    @Autowired
+    DepartmentMapper departmentMapper;
+
     @Test
     public void testPojoFormOk() throws Exception {
+        assertNotNull(service);
         PojoController pojoController = new PojoController();
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(pojoController).build();
 
@@ -99,6 +114,21 @@ public class PojoControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("userForm"))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
 
+    }
+
+    @Test
+    public void testExample(){
+        DepartmentExample departmentExample = new DepartmentExample();
+        DepartmentExample.Criteria criteria = departmentExample.createCriteria();
+        criteria.andDeptNameLike("de%");
+        criteria.andIdBetween(1, 3);
+        DepartmentExample.Criteria criteria2 = departmentExample.createCriteria();
+        criteria2.andDeptNameLike("%es%");
+        departmentExample.or(criteria2);
+        List<Department> departments = departmentMapper.selectByExample(departmentExample);
+        for (Department department : departments) {
+            System.out.println(department);
+        }
     }
 
 }
