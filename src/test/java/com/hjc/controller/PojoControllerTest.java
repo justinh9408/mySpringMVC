@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration
         (
                 {
-                        "file:src/main/resources/spring-mvc.xml"
+                        "file:src/main/resources/spring/*.xml"
                 }
         )
 @RunWith(SpringJUnit4ClassRunner.class)
