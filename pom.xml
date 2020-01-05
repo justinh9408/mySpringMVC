@@ -226,6 +226,15 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.11</version>
+        </dependency>
+
+
+
         <!-- 添加mybatis/spring整合包依赖 -->
         <dependency>
             <groupId>org.mybatis</groupId>

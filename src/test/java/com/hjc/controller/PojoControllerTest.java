@@ -1,5 +1,7 @@
 package com.hjc.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.hjc.dao.DepartmentMapper;
 import com.hjc.entity.Department;
 import com.hjc.entity.DepartmentExample;
@@ -120,29 +122,17 @@ public class PojoControllerTest {
     public void testExample(){
         DepartmentExample departmentExample = new DepartmentExample();
         DepartmentExample.Criteria criteria = departmentExample.createCriteria();
-        criteria.andDeptNameLike("de%");
+        criteria.andDeptNameLike("%e%");
         criteria.andIdBetween(1, 3);
         DepartmentExample.Criteria criteria2 = departmentExample.createCriteria();
-        criteria2.andDeptNameLike("%es%");
+        criteria2.andDeptNameLike("%e%");
         departmentExample.or(criteria2);
+        Page<Object> page = PageHelper.startPage(1, 1);
         List<Department> departments = departmentMapper.selectByExample(departmentExample);
         for (Department department : departments) {
             System.out.println(department);
         }
+        System.out.println(page.getPages());
     }
 
 }
-
-//   @Size(min = 1, max = 20)
-//    String name;   //用户名
-//
-//    @Min(value = 18)
-//    Integer age;  //年龄
-//
-//    @org.hibernate.validator.constraints.NotBlank
-//    @Email(message = "邮箱格式错误")
-//    String email;  //邮箱
-//
-//    @NotNull
-//    @Valid
-//    Address address;
